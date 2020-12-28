@@ -24,7 +24,7 @@ const ChatBox = () => {
   }, [currentIndex]);
 
   const TypeMsgs = () => {
-    setTimeout(HenryTyping, 1000);
+    setTimeout(HenryTyping, 10);
   };
 
   const HenryTyping = () => {
@@ -51,7 +51,6 @@ const ChatBox = () => {
 
   const getSelectedDate = (e) => {
     setDate(e.target.value);
-
     var div = document.getElementById("chatContainer");
     div.scrollTop = div.scrollHeight - div.clientHeight;
   };
@@ -96,7 +95,6 @@ const ChatBox = () => {
           <input
             type="date"
             value={strDate}
-            max="2020-12-28"
             onChange={(evt) => getSelectedDate(evt)}
           />{" "}
           <button className="myBtn" onClick={() => userSelection(strDate)}>
@@ -117,14 +115,11 @@ const ChatBox = () => {
     }
   };
   const editChat = (ind) => {
-    if (window.confirm("Do you really want to edit?")) {
-      var data = chatMsgs;
-      setChatmsgs(data.splice(0, ind.index + 1));
-      ChangeCurrentIndex(ind.cindex);
-    }
+    if (window.confirm("Are you sure you want to edit?")) var data = chatMsgs;
+    setChatmsgs(data.splice(0, ind.index + 1));
+    ChangeCurrentIndex(ind.cindex);
   };
   const userSelection = (val) => {
-    debugger;
     if (val !== "Continue") {
       var data = chatMsgs;
       var obj = {
@@ -136,12 +131,10 @@ const ChatBox = () => {
       data.push(obj);
       setChatmsgs(data);
       ChangeCurrentIndex(currentIndex + 1);
+      setISWaiting(true);
     } else {
-      if (window.confirm("Do you want to restart chat?")) {
-        setChatmsgs(HenryMsgs.slice(0, 3));
-        ChangeCurrentIndex(2);
-        setISWaiting(true);
-      }
+      setChatmsgs(HenryMsgs.slice(0, 3));
+      ChangeCurrentIndex(2);
     }
   };
 
@@ -151,7 +144,11 @@ const ChatBox = () => {
         <Manifest>Manifest</Manifest>
         <Menubar
           src="Assets/Group 1298.png"
-          onClick={() => userSelection("Continue")}
+          onClick={() => {
+            if (window.confirm("Are you sure to restart chat?")) {
+              userSelection("Continue");
+            }
+          }}
         />
       </TopBar>
       <ChatContainer id="chatContainer">
@@ -163,13 +160,8 @@ const ChatBox = () => {
 
         {!isWaiting &&
           chatMsgs.map((m, i) => {
-            if (m.user === "henry") {
-              return (
-                <div>
-                  <LeftChat key={i}>{m.msg}</LeftChat>
-                </div>
-              );
-            } else
+            if (m.user === "henry") return <LeftChat key={i}>{m.msg}</LeftChat>;
+            else
               return (
                 <RightChat key={i}>
                   {m.msg}
