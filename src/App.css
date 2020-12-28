@@ -1,0 +1,56 @@
+@font-face {
+  font-family: "SFUITextBold";
+  src: local("SFUITextBold"), url(./Fonts/SFUIText-Bold.ttf) format("truetype");
+}
+@font-face {
+  font-family: "SFUITextHeavy";
+  src: local("SFUITextHeavy"),
+    url(./Fonts/SFUIText-Heavy.ttf) format("truetype");
+}
+@font-face {
+  font-family: "SFUITextLight";
+  src: local("SFUITextLight"),
+    url(./Fonts/SFUIText-Light.ttf) format("truetype");
+}
+@font-face {
+  font-family: "SFUITextMedium";
+  src: local("SFUITextMedium"),
+    url(./Fonts/SFUIText-Medium.ttf) format("truetype");
+}
+@font-face {
+  font-family: "SFUITextRegular";
+  src: local("SFUITextRegular"),
+    url(./Fonts/SFUIText-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "SFUITextBold";
+  src: local("SFUITextBold"),
+    url(./Fonts/SFUIText-Semibold.ttf) format("truetype");
+}
+
+body {
+  font-family: SFUITextRegular;
+}
+h1 {
+  font-family: SFUITextBold;
+}
+h2 {
+  font-family: SFUITextLight;
+}
+.myBtn {
+  font-family: SFUITextBold;
+  background-color: #4e78f6;
+  color: white;
+  width: 100px;
+  height: 50px;
+  border-radius: 10px;
+  border: 0px;
+  margin: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+input[type="date"] {
+  width: 10%;
+  height: 40px;
+}
